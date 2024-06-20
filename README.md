@@ -4,6 +4,8 @@ Implementation of a Multi-Agent Robotics Motion Planning algorithm within a rect
 moving obstacles and tasks are distributed. The primary goal is to develop an algorithm that optimizes the agents' 
 movements to minimize the total distance traveled, considering task priorities when applicable.
 
+The following tool is used in this project:
+
 # Labyrinth Project
 
 This project is a Python application that creates a labyrinth and a graph representation of the labyrinth using
