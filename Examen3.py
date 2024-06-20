@@ -1,6 +1,8 @@
 """
 Examen 3: Métodos y Modelos Computacionales
 
+# Jose Daniel Quintana Fuentes
+
 PLANEACIÓN DE MOVIMIENTO EN ROBÓTICA MULTI-AGENTE
 
 Suponga que usted tiene un espacio de trabajo rectangular, dividido en pequeñas celdas cuadradas.
@@ -16,28 +18,6 @@ de prioridad si la tienen, o minimizando las distancias recorridas si las tareas
     - Recuerde contemplar los dos casos: 1) Cuando las tareas tienen prioridad, 2) cuando no la tienen.
     - Recuerde estructurar y formular formalmente los problemas de optimización necesarios, y evaluar las alternativas de solución.
     - En sus conclusiones incluya varias aplicaciones de la vida real en donde un sistema similar es aplicable.
-
-Explicación Extra del Problema:
-
-Supongamos que sus robots operan en un espacio de trabajo rectangular dividido en pequeñas celdas cuadradas.
-Descripción general del espacio de trabajo:
-    - El espacio de trabajo se divide en pequeñas celdas cuadradas.
-    - Hay obstáculos (celdas cerradas) que los robots no pueden visitar.
-    - El espacio de trabajo contiene M tareas (círculos rojos) y N robots (tortugas).
-    - Los obstáculos y las tareas se mueven aleatoriamente a intervalos inciertos.
-    - Las tareas pueden tener o no un orden de prioridad.
-
-Objetivo:
-Desarrollar un algoritmo para planificar los movimientos de los robots para alcanzar tareas. Si las tareas tienen prioridad,
-deben completarse en ese orden. Si las tareas no tienen prioridad, minimice la distancia total recorrida por los robots.
-
-Nota: Si la distancia entre celdas adyacentes vertical u horizontalmente es 1, entonces la distancia entre celdas adyacentes
-diagonalmente es √2. No se permiten otras adyacencias.
-
-Test: pruebe su algoritmo con casos etiquetados, demostrando ambos escenarios:
-        -- Cuando las tareas tienen prioridad.
-        -- Cuando las tareas no tienen prioridad.
-Problemas de Optimización: Estructurar y formular formalmente los problemas de optimización necesarios. Evaluar diferentes alternativas de solución.
 """
 
 # Implementación un algoritmo para planificar el movimiento de los agentes para alcanzar las tareas asignadas en un espacio de trabajo rectangular con obstáculos.
