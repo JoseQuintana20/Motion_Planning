@@ -115,7 +115,7 @@ class Labyrinth:
 
         self.canvas_sz = self._get_canvas_sz()  # Size of the canvas
         self.window = tk.Tk()  # Create a new Tkinter window
-        self.window.title("Maze")  # Set the title of the window
+        self.window.title("Workspace")  # Set the title of the window
         self.window.configure(bg='dark gray')
 
         self._create_canvas()  # Create the canvas for the labyrinth
@@ -499,6 +499,6 @@ class Labyrinth:
 
 
 if __name__ == '__main__':
-    maze = Labyrinth(4, 4, path='/dev/shm/graph.json')  # linux
-    # maze = Labyrinth(2, 3, path=r'C:\Users\German Andres\Desktop\grafo.json')  # windows
+    #maze = Labyrinth(4, 4, path='/dev/shm/graph.json')  # linux
+    maze = Labyrinth(4, 4, path=r'C:\Users\Usuario\Desktop\grafo.json')  # windows
     maze.start()

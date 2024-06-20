@@ -38,7 +38,9 @@ def create_graph():
     created by calling the trabajador function with the number of rows and columns as arguments.
     :return: None
     """
+    print('Código en funcionamiento...')
     trabajador(ROWS, COLUMNS)
+
 
 
 if __name__ == '__main__':
@@ -48,6 +50,7 @@ if __name__ == '__main__':
     hilo1.start()  # start the thread
 
     # create_graph function is executed in a separate thread
+    print('Creating graph...')
     hilo2 = threading.Thread(target=create_graph)
     hilo2.start()
 

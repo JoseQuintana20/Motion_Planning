@@ -131,11 +131,7 @@ class Grafo:
         :return: None
         """
         grafo_g = self.get_graph()
-        with candado:
-            # Put the graph into the global queue 'cola'
-            # The deepcopy function is used to avoid
-            # the Queue storing a reference to the graph to the original graph
-            cola.put(deepcopy(grafo_g))
+        cola.put(grafo_g)
 
     def save_graph(self, path: str):
         """
@@ -245,5 +241,6 @@ if __name__ == '__main__':
     grafo.show(False)
 
     # Save the graph as a json file
-    grafo.save_graph('/dev/shm/graph.json')
+    #grafo.save_graph('/dev/shm/graph.json')
+    grafo.save_graph(r'C:\Users\Usuario\Desktop\grafo.json')  # For operation in Windows
     print(grafo)
