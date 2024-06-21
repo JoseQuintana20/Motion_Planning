@@ -2,12 +2,13 @@
 
 Implementation of a Multi-Agent Robotics Motion Planning algorithm within a rectangular workspace, where randomly 
 moving obstacles and tasks are distributed. The primary goal is to develop an algorithm that optimizes the agents' 
-movements to minimize the total distance traveled, considering task priorities when applicable.
+movements to minimize the total distance traveled, considering task priorities when applicable. 
+The corresponding code can be found in the `Examen3.py`
 
 ## Video Preview
-Demonstration of Multi-Agent Robotics Motion Planning of the Project through the Following Videos:
+Click on the images below to see the video demonstration of the Multi-Agent Robotics Motion Planning Project:
 
-Test with priority
+Test with priority 
 [![Test with priority](https://i.imgur.com/WvK8bUS.png)](https://imgur.com/WvK8bUS)
 
 Test without priority
