@@ -5,13 +5,13 @@ moving obstacles and tasks are distributed. The primary goal is to develop an al
 movements to minimize the total distance traveled, considering task priorities when applicable.
 
 ## Video Preview
-Explore a brief preview of the project through the following video:
+Demonstration of Multi-Agent Robotics Motion Planning of the Project through the Following Videos:
 
 Test with priority
-[![Test with priority](https://imgur.com/WvK8bUS)]
+[![Test with priority](https://i.imgur.com/WvK8bUS.png)](https://imgur.com/WvK8bUS)
 
 Test without priority
-[![Test with priority](https://imgur.com/IQgRHiU)]
+[![Test without priority](https://i.imgur.com/IQgRHiU.png)](https://imgur.com/IQgRHiU)
 
 
 The following tool is used in this project:
