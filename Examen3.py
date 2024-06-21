@@ -171,27 +171,34 @@ def es_arista_diagonal_invalida(inicio, destino, nodos_obstaculos):
 
 # Implementación del Algoritmo de Floyd-Warshall para encontrar el camino más corto entre dos nodos en un grafo
 def FloydWarshall(grafo, nodos_obstaculos):
-    V = grafo.V
-    E = grafo.E
-    inf = float('inf')
-    dist = {u: {v: inf for v in V} for u in V} # Inicializar la matriz de distancias con infinito
-    next_node = {u: {v: None for v in V} for u in V} # Inicializar la matriz de nodos siguientes con None
+    V = grafo.V # Conjunto de nodos del grafo
+    E = grafo.E # Conjunto de aristas del grafo
+    inf = float('inf') # Valor infinito para inicializar las distancias
+
+    # Inicializar la matriz de distancias con infinito
+    dist = {u: {v: inf for v in V} for u in V}
+
+    # Inicializar la matriz de nodos siguientes con None
+    next_node = {u: {v: None for v in V} for u in V}
 
     # Inicializar las distancias y los nodos siguientes con los valores de las aristas
     for u in V:
-        dist[u][u] = 0
+        dist[u][u] = 0 # La distancia de un nodo a sí mismo es 0
         for v in V[u]:
+            # Verificar si existe una arista (u, v) o (v, u) en E y no es una arista diagonal inválida
             if f"({u}, {v})" in E and not es_arista_diagonal_invalida(u, v, nodos_obstaculos):
                 dist[u][v] = E[f"({u}, {v})"]
                 next_node[u][v] = v
             if f"({v}, {u})" in E and not es_arista_diagonal_invalida(v, u, nodos_obstaculos):
                 dist[v][u] = E[f"({v}, {u})"]
                 next_node[v][u] = u
+            # Garantizar simetría en la matriz de distancias
             if dist[u][v] != dist[v][u]:
                 dist[u][v] = dist[v][u] = min(dist[u][v], dist[v][u])
                 next_node[u][v] = v
                 next_node[v][u] = u
 
+    # Algoritmo Principal de Floyd-Warshall
     for k in V:
         if k in nodos_obstaculos:
             continue
@@ -201,6 +208,7 @@ def FloydWarshall(grafo, nodos_obstaculos):
             for j in V:
                 if j in nodos_obstaculos:
                     continue
+                # Si encontramos un camino más corto a través de k, se actualiza la distancia y el nodo siguiente
                 if dist[i][j] > dist[i][k] + dist[k][j]:
                     dist[i][j] = dist[i][k] + dist[k][j]
                     next_node[i][j] = next_node[i][k]
@@ -389,8 +397,8 @@ def solve_problem():
 
         # Generar tareas y agentes aleatoriamente en el espacio de trabajo rectangular, evitando los nodos de las componentes conexas (celdas cerradas) como posiciones de tareas y agentes.
         # Agregar k tareas y n agentes
-        k = random.randint(1, 4) # Número de tareas
-        n = random.randint(1, 4) # Número de agentes
+        k = random.randint(0, 0) # Número de tareas
+        n = random.randint(0, 0) # Número de agentes
 
         # Obtener los nodos válidos (nodos que no son obstáculos)
         nodos_validos = [nodo for nodo in range(ROWS * COLUMNS) if nodo not in nodos_obstaculos]
