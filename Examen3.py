@@ -34,13 +34,13 @@ import math
 import pulp
 
 
-# Defnir una semilla para la generación de números aleatorios
-random.seed(15)
+# Defnir una semilla a modo de prueba para la generación de números aleatorios
+#random.seed(0)
 
 # Macro expansions -sort of
 ROWS = 10
 COLUMNS = 20
-# Definir si las tareas tienen prioridad o no
+# Definir si las tareas tienen Prioridad o No
 PRIORIDAD = False # False: Sin prioridad, True: Con prioridad
 
 
@@ -75,7 +75,8 @@ def generar_celda_cerrada(rows, columns, n):
 
     # Selección inicial de un nodo aleatorio
     start_x, start_y = random.randint(0, rows - 1), random.randint(0, columns - 1)
-    componente_conexa.add(obtener_nodo(start_x, start_y, columns)) # Se añade el nodo inicial a la componente conexa
+    componente_conexa.add(obtener_nodo(
+        start_x, start_y, columns)) # Se añade el nodo inicial a la componente conexa
 
     # Mientras la componente conexa no tenga el número de nodos deseado n, se añaden nodos aleatorios a la componente conexa.
     while len(componente_conexa) < n:
@@ -108,7 +109,7 @@ def generar_grafo_con_obstaculos(rows, columns, m):
     obstaculos = []
     for _ in range(m):
         n = random.randint(1, 6)  # Número de nodos que compone la componente conexa para cada componente conexa
-        print("Números de nodos que componen la componente conexa: ", n)
+        #print("Números de nodos que componen la componente conexa: ", n)
         componente_conexa = generar_celda_cerrada(rows, columns, n)
         obstaculos.append(componente_conexa)
 
@@ -152,7 +153,7 @@ def generar_grafo_con_obstaculos(rows, columns, m):
 
     # Obtener los nodos de las componentes conexas
     nodos_obstaculos = [nodo for celda in obstaculos for nodo in celda]
-    print("Nodos de las componentes conexas: ", nodos_obstaculos)
+    #print("Nodos de las componentes conexas: ", nodos_obstaculos)
 
     return grafo, nodos_obstaculos # El grafo que retorna tiene la estructura de un diccionario donde las claves son los nodos y los valores son los nodos adyacentes, y los nodos de las componentes conexas
 
@@ -260,7 +261,8 @@ def optimization(agentes, tareas, dist):
     # Obtener las asignaciones
     assignments = [(i, j) for i in range(num_agentes) for j in range(num_tareas) if pulp.value(x[i, j]) == 1]
 
-    return assignments # Retornar las asignaciones de tareas a agentes, donde cada asignación es una tupla (agente, tarea), donde la tupla agente está compuesta por el índice del agente y la tarea está compuesta por el índice de la tarea (índices, tareas)
+    return assignments # Retornar las asignaciones de tareas a agentes, donde cada asignación es una tupla (agente, tarea),
+    # donde la tupla agente está compuesta por el índice del agente y la tarea está compuesta por el índice de la tarea (índices, tareas)
 
 
 # Función para reconstruir la ruta entre dos nodos
@@ -292,13 +294,13 @@ def reconstruir_ruta(next_node, inicio, destino):
 def planificar_movimientos(agentes, tareas, dist, next_node, nodos_obstaculos, prioridad=False, orden_prioridad=None):
     """
     Función para planificar los movimientos de los agentes para alcanzar las tareas asignadas.
-    :param agentes:
-    :param tareas:
-    :param dist:
-    :param next_node:
-    :param nodos_obstaculos:
-    :param prioridad:
-    :param orden_prioridad:
+    :param agentes: Agentes a los que se asignarán las tareas.
+    :param tareas: Tareas que se asignarán a los agentes.
+    :param dist: Distancias entre los agentes y las tareas.
+    :param next_node: Nodos siguientes en el camino más corto.
+    :param nodos_obstaculos: Nodos de las componentes conexas.
+    :param prioridad: Indica si las tareas tienen prioridad o no.
+    :param orden_prioridad: Orden de prioridad de las tareas.
     :return:
     """
     # Asignar tareas a agentes
@@ -345,12 +347,13 @@ def planificar_movimientos(agentes, tareas, dist, next_node, nodos_obstaculos, p
                 break
 
         rutas_totales[agente] = ruta_optima
-        print(f"Ruta óptima para el agente Final {agente}: {ruta_optima}")
+        #print(f"Ruta óptima para el agente Final {agente}: {ruta_optima}")
 
-    print("Rutas totales de los agentes a las tareas asignadas:", rutas_totales)
+    #print("Rutas totales de los agentes a las tareas asignadas:", rutas_totales)
 
     return rutas_totales
 
+# Función para resolver el problema de planificación de movimiento de los agentes
 def solve_problem():
     """
     Función para resolver el problema de planificación de movimiento de los agentes.
@@ -390,15 +393,15 @@ def solve_problem():
         # Se crea un grafo con obstáculos (celdas cerradas o componentes conexas) y se añaden tareas y agentes aleatoriamente en el grafo.
         # Número de componentes conexas
         m = random.randint(1, 6) # Número de componentes conexas (celdas cerradas)
-        print("Número de componentes conexas: ", m)
+        #print("Número de componentes conexas: ", m)
         # Generar grafo con obstáculos
         grafo, nodos_obstaculos = generar_grafo_con_obstaculos(ROWS, COLUMNS, m)
         print(grafo.get_graph())
 
         # Generar tareas y agentes aleatoriamente en el espacio de trabajo rectangular, evitando los nodos de las componentes conexas (celdas cerradas) como posiciones de tareas y agentes.
         # Agregar k tareas y n agentes
-        k = random.randint(0, 0) # Número de tareas
-        n = random.randint(0, 0) # Número de agentes
+        k = random.randint(1, 6) # Número de tareas
+        n = random.randint(1, 4) # Número de agentes
 
         # Obtener los nodos válidos (nodos que no son obstáculos)
         nodos_validos = [nodo for nodo in range(ROWS * COLUMNS) if nodo not in nodos_obstaculos]
@@ -411,13 +414,17 @@ def solve_problem():
         # Verificar que no se superpongan nodos de tareas y agentes
         for nodo_tarea in tareas:
             if nodo_tarea in agentes:
-                agentes.remove(nodo_tarea)
+                agentes.remove(nodo_tarea) # Eliminar el nodo de la tarea de la lista de agentes
 
         for nodo_agente in agentes:
             if nodo_agente in tareas:
-                tareas.remove(nodo_agente)
+                tareas.remove(nodo_agente) # Eliminar el nodo del agente de la lista de tareas
 
-        print("Tareas: ", tareas)
+        # Verificar para que no se superpongan las tarea con los nodos de las componentes conexas
+        for nodo_tarea in tareas:
+            if nodo_tarea in nodos_obstaculos:
+                tareas.remove(nodo_tarea)
+
         # Se procede a añadir las tareas representadas como círculos rojos en el espacio de trabajo rectangular y los agentes representados como tortugas en el grafo.
 
         # Colocar los nodos de tareas y agentes en el grafo
